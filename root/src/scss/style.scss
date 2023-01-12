@@ -1,0 +1,143 @@
+@use "variaveis" as v;
+@use "mixins" as mx;
+@use "extends";
+
+.header {
+  @include mx.box;
+  background-image: url(mx.bgImage(v.$bgHome_2));
+  // background-image: url(v.$bgHome);
+  background-size: 100%;
+  background-position-y: -300px;
+}
+
+.header-midHeight {
+  height: 300px;
+}
+
+.logo_slogan {
+  font-size: 3rem;
+  text-shadow: 2px 1px 1px rgba(1, 1, 8, 0.6);
+}
+
+.navbar {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: v.$bgColorNav;
+
+  &_link {
+    color: v.$link;
+    text-transform: uppercase;
+    font-size: 1rem;
+    text-decoration: none;
+    &:hover {
+      color: v.$linkHover;
+    }
+  }
+
+  &_nav {
+    @extend %list-none;
+  }
+}
+
+.socialMedia_icones {
+  @extend %list-none;
+}
+
+.servicos {
+  @include mx.box;
+  @include mx.flex-center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  &_card {
+    width: 31%;
+    // margin-right: 0.6rem;
+    margin-bottom: v.$m1;
+    height: 400px;
+    box-shadow: 8px 8px 10px #999;
+  }
+}
+
+.footer {
+  @include mx.box;
+  @include mx.flex-center;
+  background-color: rgba(152, 88, 64, 0.5);
+  &_navbar {
+    @include mx.flex-center;
+    background-color: rgba(1, 1, 8, 0.6);
+    &_link {
+      text-decoration: none;
+      color: #fff;
+    }
+    &_nav {
+      @extend %list-none;
+      flex-direction: column;
+    }
+  }
+  &_socialMedia {
+    &_icones {
+      flex-direction: column;
+      @extend %list-none;
+    }
+    &_item {
+      margin-bottom: v.$m1;
+    }
+  }
+}
+
+.m-1 {
+  margin: v.$m1;
+}
+
+.mx-1 {
+  margin: v.$mx1;
+}
+
+.p-1 {
+  padding: v.$p-1;
+}
+
+.text-white {
+  color: v.$linkHover;
+}
+
+.container {
+  @include mx.flex-center;
+}
+
+@media (max-width: 1170px) {
+  .header,
+  .navbar_nav {
+    flex-direction: column;
+    min-width: 100%;
+  }
+  .navbar {
+    z-index: 1;
+  }
+  .socialMedia {
+    z-index: 2;
+    &_icones {
+      flex-direction: column;
+    }
+    &_item {
+      margin: v.$m1;
+    }
+  }
+  .footer {
+    flex-direction: column;
+    min-width: 100%;
+    &_navbar {
+      justify-content: flex-start;
+      margin-bottom: v.$m1;
+    }
+    &_socialMedia_icones {
+      flex-direction: row;
+      margin-bottom: v.$m1;
+    }
+    .logo_slogan,
+    .contato_info {
+      padding-left: 1.5rem;
+      margin-bottom: v.$m1;
+    }
+  }
+}
